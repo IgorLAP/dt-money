@@ -8,9 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 #Lock
-lock
-package-lock.json
-*-lock.json
+git rm --cached package-lock.json
 
 node_modules
 dist
