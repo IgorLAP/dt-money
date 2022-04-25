@@ -1,4 +1,4 @@
-import { darken } from 'polished';
+import { darken, transparentize } from 'polished';
 import styled from 'styled-components';
 
 export const Container = styled.form`
@@ -51,25 +51,40 @@ export const TransactionType = styled.div`
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     margin: 1rem 0;
+`;
 
-    button {
-        height: 4rem;
-        border: 1px solid #d7d7d7;
-        border-radius: .25rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: transparent;
-        transition: border-color .2s;
+interface TypeButtonProps {
+    isActive: boolean;
+    activeColor: 'green' | 'red';
+}
 
-        &:hover {
-            border-color: ${darken(0.1, '#d7d7d7')};
-        }
+const colors = {
+    red: '#E52E4D',
+    green: '#33CC95'
+}
 
-        img {
-            height: 25px;
-            width: 25px;
-        }
+export const TypeButton = styled.button<TypeButtonProps>`
+    height: 4rem;
+    border: 1px solid #d7d7d7;
+    border-radius: .25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: 
+    ${props => 
+        props.isActive 
+        ? transparentize(0.8, colors[props.activeColor]) 
+        : 'transparent'
+    };
+    transition: border-color .2s;
+
+    &:hover {
+        border-color: ${darken(0.1, '#d7d7d7')};
+    }
+
+    img {
+        height: 25px;
+        width: 25px;
     }
 
     span {
